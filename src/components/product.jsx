@@ -8,19 +8,18 @@ class Product extends Component {
     return (
       <React.Fragment>
         <div className="product">
-          <img
-            src="https://picsum.photos/200/300
-"
-            alt="product"
-          />
-          <h5>product title here</h5>
+          <img src={"/images/product/" + this.props.data.image} alt="product"/>
+          
+          <h5 className="title">{this.props.data.title}</h5>
           <div>
-            <label>price per case: $50.00</label>
-            <label>price per each: $1.25</label>
+            <label className="total-value">price per case: $50.00</label>
+            <label className="price-value">price per each: $1.25</label>
           </div>
+          
           <QuantityPicker></QuantityPicker>
 
-          <button btn btn-sm btn-info>
+          <button className="btn btn-sm btn-info">
+            <i className="fa fa-cart-plus" aria-hidden="true"></i> 
             Add
           </button>
         </div>
@@ -29,4 +28,7 @@ class Product extends Component {
   }
 }
 
-export default Product;
+export default Product; 
+           
+
+            

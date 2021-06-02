@@ -1,6 +1,7 @@
 
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle";
 import Footer from './components/footer';
 import NavBar from './components/navBar';
 import Catalog from './components/catalog';
@@ -11,14 +12,16 @@ function App() {
       <NavBar></NavBar>
      <h1>hello from react</h1>
      
-
-     <Catalog></Catalog>
+ <Catalog></Catalog>
 
      <Footer></Footer>
     </div>
     
   );
-
 }
 
 export default App;
+    
+
+
+

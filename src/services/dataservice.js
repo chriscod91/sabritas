@@ -2,7 +2,7 @@ var data = [
     {
       id: 123123123,
       code: "ban1",
-      image: "prod1.jpg",
+      image: "product-1.jpg",
       title: "bananas",
       price: 123.09,
       minimum: 1,
@@ -10,7 +10,7 @@ var data = [
     {
       id: 123123123,
       code: "ban1",
-      image: "prod1.jpg",
+      image: "product-2.jpg",
       title: "bananas",
       price: 123.09,
       minimum: 1,
