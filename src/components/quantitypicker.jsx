@@ -2,32 +2,34 @@ import React, { Component } from "react";
 
 class QuantityPicker extends Component {
   state = {
-    name:"chris codina",
     quantity: 1,
   };
-  
+
   render() {
     return (
-      <div className="qp-page">
-        <button onClick={this.increaseQuantity}
-        className="btn btn-sm btn-primary"> + </button>
+      <div className="qntyPicker">
+        <button className="btn btn-sm btn-info" onClick={this.decrease}> - </button>
 
-         <label>{this.state.quantity}</label>
+         <label className="qnty">{this.state.quantity}</label>
         
-        <button onClick={this.decreaseQuantity}
-        className="btn btn-sm btn-primary">-</button>
+        <button className="btn btn-sm btn-info" onClick={this.increase}> + </button>
         </div>
     );
   }
 
-  increaseQuantity = () =>{
-    this.setState({ quantity: this.state.quantity = 1 });//valid way of changing the state
+  decrease = () => {
+    var qnty = this.state.quantity - 1;
+    if (qnty > 0){
+      this.setState({ quantity: qnty});
+      this.props.onQuantityChange(qnty);
+    }
   };
 
-  decreaseQuantity = () => {
-    if (this.state.quantity > 1){
-      this.setState({ quantity: this.state.quantity - 1});
-    }
+  increase = () => {
+    let qnty = this.state.quantity + 1;
+    this.setState({ quantity: qnty });
+
+    this.props.onQuantityChange(qnty);//valid way of changing the state
   };
 }
 

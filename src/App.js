@@ -1,22 +1,21 @@
 
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle";
-import Footer from './components/footer';
-import NavBar from './components/navBar';
-import Catalog from './components/catalog';
+import "font-awesome/css/font-awesome.min.css";
+import Footer from './components/footer/footer';
+import NavBar from './components/navBar/navBar';
+import Catalog from './components/catalog/catalog';
 
 function App() {
   return (
     <div className="App">
       <NavBar></NavBar>
-     <h1>hello from react</h1>
      
- <Catalog></Catalog>
+      <Catalog></Catalog>
+      <hr></hr>
 
-     <Footer></Footer>
+      <Footer></Footer>
     </div>
-    
   );
 }
 

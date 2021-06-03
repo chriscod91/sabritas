@@ -1,32 +1,69 @@
 import React, { Component } from "react";
 import "./catalog.css";
-import Product from "./product";
-import ProductService from "../../service/productService";
+import Product from "../product/product";
+import ProductService from "../../services/productService";
+
 
 class Catalog extends Component {
   state = {
-    product: [],
+    products: [],
+    categories: [],
+    selectedCategory: "",
   };
+
   render() {
     //get data from service
+    let prodsToDisplay = this.state.products;
+
+    if (this.state.selectedCategory){
+      prodsToDisplay = prodsToDisplay.filter((prod) => prod.category == this.state.selectedCategory);
+    }
+
     return (
       <div className="catalog-page">
-        <h1>our selection</h1>
-        <div>our products: {this.state.product.length} this is the current selection</div>
-       
-       {this.state.product.map((prod) => (<Product key={prod.id} title={prod.title}></Product>))}
+        <div className="categories">
+        <button onClick={() => this.selectCategory("")} className="btn btn-secondary ml-1">
+              show all
+            </button>
+          
+          {this.state.categories.map((cat) => (
+            <button onClick={() => this.selectCategory(cat)} className="btn btn-info ml-1" key={cat}>
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        <div className="products mt-3">
+          {prodsToDisplay.map((prod) => (
+            <Product key={prod.id} data={prod}></Product>
+          ))}
+        </div>
       </div>
     );
   }
 
-  //when the component is mounted ()
-  conponentDidMount(){
-     //good place to load data (fro server)
-     let service = new ProductService();
-     let data = service.getCatalog();
+  selectCategory = (cat) => {
+    console.log("user sekected a cat." , cat);
+    this.setState({ selectedCategory: cat});
+  };
 
-     //put data on state
-     this.setState({product: data });
+  //when the component is mounted ()
+  conponentDidMount() {
+    //good place to load data (fro server)
+    let service = new ProductService();
+    let data = service.getCatalog();
+
+    var cats = [];
+    for (let i = 0; i < data.length; i++) {
+      var category = data[i].category;
+      if (!cats.includes(category)) {
+        //if the category does not exist inside the solution array
+        cats.push(category); // add it
+      }
+    }
+
+    //put data on state
+    this.setState({ product: data, categories: cats });
   }
 }
 

@@ -1,34 +1,41 @@
 import React, { Component } from "react";
+import QuantityPicker from "../quantityPicker/quantitypicker";
 import "./product.css";
-import QuantityPicker from "./quantitypicker";
 
 class Product extends Component {
-  state = {};
+  state = {
+    quantity: 1,
+  };
+
   render() {
     return (
-      <React.Fragment>
+      
         <div className="product">
           <img src={"/images/product/" + this.props.data.image} alt="product"/>
+          <h5>{this.props.data.title}</h5>
           
-          <h5 className="title">{this.props.data.title}</h5>
-          <div>
-            <label className="total-value">price per case: $50.00</label>
-            <label className="price-value">price per each: $1.25</label>
+          <div className="prices">
+            <label className="total-value">total: ${this.getTotal()}</label>
+            <label className="price-value">price: ${this.props.data.price.toFixed(2)}</label>
           </div>
           
-          <QuantityPicker></QuantityPicker>
-
-          <button className="btn btn-sm btn-info">
-            <i className="fa fa-cart-plus" aria-hidden="true"></i> 
-            Add
-          </button>
+          <QuantityPicker onQuantityChange={this.handleQuantityChange}></QuantityPicker>
         </div>
-      </React.Fragment>
     );
   }
+
+  getTotal = () => {
+    let total = this.props.data.price * this.state.quantity;
+    return total.toFixed(2);
+  };
+
+  handleQuantityChange = (qnty) => {
+    this.setState({ quantity: qnty});
+  };
 }
 
-export default Product; 
+export default Product;
+ 
            
 
             
