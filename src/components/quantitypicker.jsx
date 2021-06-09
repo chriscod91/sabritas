@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./quantitypicker.css";
 
 class QuantityPicker extends Component {
   state = {

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import "./catalog.css";
-import Product from "../product/product";
-import ProductService from "../../services/productService";
+import Product from "./product";
+import ProductService from "../services/productService";
+
 
 
 class Catalog extends Component {
@@ -15,27 +16,37 @@ class Catalog extends Component {
     //get data from service
     let prodsToDisplay = this.state.products;
 
-    if (this.state.selectedCategory){
-      prodsToDisplay = prodsToDisplay.filter((prod) => prod.category == this.state.selectedCategory);
+    if (this.state.selectedCategory) {
+      prodsToDisplay = prodsToDisplay.filter(
+        (prod) => prod.category === this.state.selectedCategory
+      );
     }
 
     return (
       <div className="catalog-page">
+        
         <div className="categories">
-        <button onClick={() => this.selectCategory("")} className="btn btn-secondary ml-1">
-              show all
-            </button>
-          
+          <button
+            onClick={() => this.selectCategory("")}
+            className="btn btn-secondary ml-1"
+          >
+            show all
+          </button>
+
           {this.state.categories.map((cat) => (
-            <button onClick={() => this.selectCategory(cat)} className="btn btn-info ml-1" key={cat}>
+            <button
+              onClick={() => this.selectCategory(cat)}
+              className="btn btn-info ml-1"
+              key={cat}
+            >
               {cat}
             </button>
           ))}
         </div>
 
         <div className="products mt-3">
-          {prodsToDisplay.map((prod) => (
-            <Product key={prod.id} data={prod}></Product>
+          {prodsToDisplay.map((prod, index) => (
+            <Product key={index} data={prod}></Product>
           ))}
         </div>
       </div>
@@ -43,15 +54,16 @@ class Catalog extends Component {
   }
 
   selectCategory = (cat) => {
-    console.log("user sekected a cat." , cat);
-    this.setState({ selectedCategory: cat});
+    console.log("user selected a cat.", cat);
+    this.setState({ selectedCategory: cat });
   };
 
   //when the component is mounted ()
-  conponentDidMount() {
+  async componentDidMount() {
+    
     //good place to load data (fro server)
     let service = new ProductService();
-    let data = service.getCatalog();
+    let data = await service.getCatalog();
 
     var cats = [];
     for (let i = 0; i < data.length; i++) {
@@ -61,9 +73,9 @@ class Catalog extends Component {
         cats.push(category); // add it
       }
     }
-
+    
     //put data on state
-    this.setState({ product: data, categories: cats });
+    this.setState({ products: data, categories: cats });
   }
 }
 

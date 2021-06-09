@@ -1,15 +1,28 @@
-
-.product{
-    display: inline-block;
-    border: 1px solid rgb(43, 181, 228);
-    width: 280px;
-    height: 330px;
-    margin-right: 10px;
-    margin-bottom: 20px;
+.product {
+  display: inline-block;
+  width: 11rem;
+  height: 18rem;
+  margin: 25px;
+}
+div .prices{
+    border: 3px solid rgb(43, 181, 228);
+    border-radius: 15px;
+    padding: 8px;
+    background-color: rgb(238, 238, 238) ;
+    margin: 7px;
 }
 
-@media (max-width: 768px){
- .product{
-     width: 100%;  
- }
+.product img {
+  width: 10rem;
+  border: 10px solid rgb(43, 181, 228);
+  border-radius: 15px;
+  padding: 8px;
+  background-color: rgb(238, 238, 238);
+}
+.product img:hover {
+  width: 12rem;
+  border: 3px dotted rgb(43, 181, 228);
+}
+@media (max-width: 768px) {
+    
 }

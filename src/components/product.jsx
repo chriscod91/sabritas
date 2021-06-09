@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import QuantityPicker from "../quantityPicker/quantitypicker";
+import QuantityPicker from "./quantitypicker";
 import "./product.css";
 
 class Product extends Component {
@@ -9,18 +9,21 @@ class Product extends Component {
 
   render() {
     return (
-      
-        <div className="product">
-          <img src={"/images/product/" + this.props.data.image} alt="product"/>
-          <h5>{this.props.data.title}</h5>
-          
-          <div className="prices">
-            <label className="total-value">total: ${this.getTotal()}</label>
-            <label className="price-value">price: ${this.props.data.price.toFixed(2)}</label>
-          </div>
-          
-          <QuantityPicker onQuantityChange={this.handleQuantityChange}></QuantityPicker>
+      <div className="product">
+        <img src={"/images/products/" + this.props.data.image} alt="product" />
+        <h5>{this.props.data.title}</h5>
+
+        <div className="prices">
+          <label className="total-value">total: ${this.getTotal()}</label>
+          <label className="price-value">
+            price: ${this.props.data.price.toFixed(2)}
+          </label>
         </div>
+
+        <QuantityPicker
+          onQuantityChange={this.handleQuantityChange}
+        ></QuantityPicker>
+      </div>
     );
   }
 

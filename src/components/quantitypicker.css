@@ -1,0 +1,14 @@
+div .qntyPicker{
+    border: 3px solid rgb(43, 181, 228);
+    border-radius: 15px;
+    padding: 8px;
+    background-color: rgb(238, 238, 238) ;
+    margin: 7px;
+}
+div .qntyPicker:hover{
+    border: 3px solid rgb(43, 181, 228);
+    border-radius: 15px;
+    padding: 8px;
+    background-color: rgb(238, 238, 238) ;
+    margin: 7px;
+} 
